@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Label text="Aligns all cubes side by side and changes color of all cubes to Main Cube&apos;s color. " style="white-space: pre-wrap; height: 50px; width: 342px; -unity-text-align: lower-left;" />
+    <ui:Label text="(Mouse functionality disabled)" style="-unity-font-style: italic; font-size: 10px; height: 20px;" />
+    <ui:Button name="snap-button" text="Snap All Cubes" style="-unity-font-style: bold;" />
+    <ui:Label text="Returns cubes to original placement and color before snap. " style="height: 42px; width: 346px; white-space: pre-wrap; -unity-text-align: lower-left;" />
+    <ui:Label text="(Mouse functionality restored)" style="-unity-font-style: italic; font-size: 10px;" />
+    <ui:Button name="unsnap-button" text="Unsnap All Cubes" style="-unity-font-style: bold;" />
+</ui:UXML>
