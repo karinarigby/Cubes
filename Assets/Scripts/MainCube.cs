@@ -6,45 +6,57 @@ public class MainCube : MonoBehaviour, IPointerClickHandler
 {
     public Styles stylesSource;
     
-    private SpriteShapeRenderer _renderer;
+    private MeshRenderer _renderer;
+    private ShakeAnimationController _shakeAnimationController;
+    private FlashAnimationController  _flashAnimationController;
     private Color PrimaryColor => stylesSource.pastelRed;
     
-    [SerializeField] private SubCubesController subCubesController;
+    private SubCubesController _subCubesController;
+    private Color _lastColorFlashed;
+
 
     private void Awake()
     {
-        _renderer = GetComponent<SpriteShapeRenderer>();
+        _subCubesController = GetComponent<SubCubesController>();
+        _renderer = GetComponent<MeshRenderer>();
+        _shakeAnimationController = GetComponent<ShakeAnimationController>();
+        _flashAnimationController = GetComponent<FlashAnimationController>();
+        _renderer.material.color = stylesSource.baseGrey;
     }
 
     private void Start()
     {
-        if (subCubesController != null)
-        {
-            subCubesController.subCubeLeftClickedEvent.AddListener(OnSubCubeLeftClicked);
-        }
+        _subCubesController.subCubeLeftClickedEvent.AddListener(OnSubCubeLeftClicked);
+        _flashAnimationController.SetFlashSequence(PrimaryColor);
     }
     
     private void FlashSubCubes()
     {
-        subCubesController.FlashAll(PrimaryColor);
+        _subCubesController.FlashAll(PrimaryColor);
     }
 
     private void Shake()
     {
-        //start shake animation
-        Debug.Log("Main Cube starting to shake");
+        _shakeAnimationController.StartShake();
     }
 
     private void OnSubCubeLeftClicked(SubCube subCube)
     {
-        FlashColor(subCube.Color);
+        FlashColor(subCube.flashColor);
     }
 
     private void FlashColor(Color colorToFlash)
     {
-        //start animation with flash color
-        Debug.LogFormat("Main Cube starting to flash {0} color", colorToFlash);
-        _renderer.color = colorToFlash;
+        if (_flashAnimationController == null)
+        {
+            return;
+        }
+        if (colorToFlash != _lastColorFlashed)
+        {
+            _flashAnimationController.SetFlashSequence(colorToFlash);
+        }
+        _flashAnimationController.DoFlashAnimation(colorToFlash);
+        _lastColorFlashed = colorToFlash;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -52,11 +64,9 @@ public class MainCube : MonoBehaviour, IPointerClickHandler
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
-                Debug.Log("Left Click in the frame");
                 FlashColor(PrimaryColor);
                 break;
             case PointerEventData.InputButton.Right:
-                Debug.Log("Right Click in the frame");
                 Shake();
                 FlashSubCubes();
                 break;
@@ -65,6 +75,6 @@ public class MainCube : MonoBehaviour, IPointerClickHandler
 
     private void OnDestroy()
     {
-        subCubesController.subCubeLeftClickedEvent.RemoveListener(OnSubCubeLeftClicked);
+        _subCubesController.subCubeLeftClickedEvent.RemoveListener(OnSubCubeLeftClicked);
     }
 }

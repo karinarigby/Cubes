@@ -12,4 +12,6 @@ public class Styles : ScriptableObject
     [SerializeField] public Color pastelGreen;
     
     [SerializeField] public Color pastelBlue;
+    
+    [SerializeField] public Color baseGrey;
 }

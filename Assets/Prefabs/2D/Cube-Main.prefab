@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8165290333102034543}
   - component: {fileID: 7499384200838791447}
   - component: {fileID: 794942859835021929}
+  - component: {fileID: 171112805191358478}
   m_Layer: 0
   m_Name: Cube-Main
   m_TagString: Untagged
@@ -246,3 +247,25 @@ MonoBehaviour:
   subCubeLeftClickedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &171112805191358478
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6976880442304005314}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 805ec2f4df302154684515dfd6be40ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
