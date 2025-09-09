@@ -27,7 +27,7 @@ public class SnapEditorTool : EditorTool
         //if button
         if (target is CubesController cubesController)
         {
-            cubesController.SetColorsSnapshot();
+            cubesController.SetCubesDisplayMaterial(cubesController.mainCubeController.PrimaryMaterial);
             cubesController.SetLastTransforms();
             cubesController.mouseEnabled = false;
         }
@@ -47,7 +47,7 @@ public class UnsnapEditorTool : EditorTool
         //if button
         if (target is CubesController cubesController)
         {
-            cubesController.ApplyColorSnapshot();
+            cubesController.ResetCubeMaterials();
             cubesController.ApplyTransformSnapshot();
             cubesController.mouseEnabled = true;
         }

@@ -108,7 +108,23 @@ PrefabInstance:
     - target: {fileID: 7267725706689802293, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 673a2821ff37df14b96259ed428842b1, type: 2}
+      objectReference: {fileID: 2100000, guid: c34742a3246083c458828cffd53322d4, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: c34742a3246083c458828cffd53322d4, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <BaseMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: c34742a3246083c458828cffd53322d4, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <PrimaryMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: c34742a3246083c458828cffd53322d4, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <NeutralDisplayMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ecc76f5f9b9660498236c2bc6fd1813, type: 2}
     - target: {fileID: 9064156301632137938, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -182,6 +198,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubCube-3
       objectReference: {fileID: 0}
+    - target: {fileID: 7267725706689802293, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fffc6132c8b2bad4d91344877aa8aaee, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: fffc6132c8b2bad4d91344877aa8aaee, type: 2}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: flashColor.b
       value: 0.7490196
@@ -198,6 +222,14 @@ PrefabInstance:
       propertyPath: <Id>k__BackingField
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <BaseMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: fffc6132c8b2bad4d91344877aa8aaee, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <PrimaryMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: fffc6132c8b2bad4d91344877aa8aaee, type: 2}
     - target: {fileID: 9064156301632137938, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -271,6 +303,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubCube-2
       objectReference: {fileID: 0}
+    - target: {fileID: 7267725706689802293, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a6e376bb0c1f8046a1c3605a1c10620, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a6e376bb0c1f8046a1c3605a1c10620, type: 2}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: flashColor.b
       value: 0.7137255
@@ -287,6 +327,14 @@ PrefabInstance:
       propertyPath: <Id>k__BackingField
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <BaseMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a6e376bb0c1f8046a1c3605a1c10620, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <PrimaryMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a6e376bb0c1f8046a1c3605a1c10620, type: 2}
     - target: {fileID: 9064156301632137938, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.25
@@ -360,6 +408,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubCube-4
       objectReference: {fileID: 0}
+    - target: {fileID: 7267725706689802293, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a8ce144bd4a47b6479d64b14a64ee06d, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: a8ce144bd4a47b6479d64b14a64ee06d, type: 2}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: flashColor.b
       value: 1
@@ -376,6 +432,14 @@ PrefabInstance:
       propertyPath: <Id>k__BackingField
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <BaseMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: a8ce144bd4a47b6479d64b14a64ee06d, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <PrimaryMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: a8ce144bd4a47b6479d64b14a64ee06d, type: 2}
     - target: {fileID: 9064156301632137938, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.75
@@ -449,6 +513,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubCube-1
       objectReference: {fileID: 0}
+    - target: {fileID: 7267725706689802293, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a347ef3724134fe49bc2ca5ef9a75424, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: a347ef3724134fe49bc2ca5ef9a75424, type: 2}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: flashColor.b
       value: 0.64705884
@@ -461,6 +533,14 @@ PrefabInstance:
       propertyPath: <Id>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <BaseMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: a347ef3724134fe49bc2ca5ef9a75424, type: 2}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <PrimaryMaterial>k__BackingField
+      value: 
+      objectReference: {fileID: 2100000, guid: a347ef3724134fe49bc2ca5ef9a75424, type: 2}
     - target: {fileID: 9064156301632137938, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.25

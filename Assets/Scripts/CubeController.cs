@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(FlashAnimationController))]
 [RequireComponent(typeof(ShakeAnimationController))]
@@ -12,23 +13,22 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
     public UnityEvent<CubeController> leftClicked;
     public UnityEvent<CubeController> rightClicked;
     
-    [SerializeField] MeshRenderer _renderer;
+    [SerializeField] MeshRenderer _ledDisplayRenderer;
     private FlashAnimationController _flashAnimationController;
     private ShakeAnimationController _shakeAnimationController;
+
+    [field:SerializeField] public Material NeutralDisplayMaterial { get; private set; }
+    [field:SerializeField] public Material PrimaryMaterial { get; private set; }
     
-    [field: SerializeField] public Color flashColor;
+    
+    
+    public Color flashColor;
     private Color _lastColorFlashed;
 
     private void Awake()
     {
-        _renderer = GetComponent<MeshRenderer>();
         _shakeAnimationController = GetComponent<ShakeAnimationController>();
         _flashAnimationController = GetComponent<FlashAnimationController>();
-    }
-
-    public void SetBaseColor(Color color)
-    {
-        _renderer.material.color = color;
     }
 
     public void Flash(Color colorToFlash)
@@ -40,7 +40,7 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
         }
         if (colorToFlash != _lastColorFlashed)
         {
-            _flashAnimationController.SetFlashSequence(colorToFlash);
+            _flashAnimationController.SetFlashSequence(colorToFlash, _ledDisplayRenderer.material );
         }
         _flashAnimationController.DoFlashAnimation(colorToFlash);
         _lastColorFlashed = colorToFlash;
@@ -62,5 +62,15 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
     public void Shake()
     {
         _shakeAnimationController.StartShake();
+    }
+
+    public void SetLedDisplayMaterial(Material material)
+    {
+        _ledDisplayRenderer.material = material;
+    }
+
+    public void ResetDisplayMaterial()
+    {
+        _ledDisplayRenderer.material = NeutralDisplayMaterial;
     }
 }

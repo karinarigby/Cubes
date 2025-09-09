@@ -71,7 +71,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 4ecc76f5f9b9660498236c2bc6fd1813, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,7 +168,9 @@ MonoBehaviour:
   rightClicked:
     m_PersistentCalls:
       m_Calls: []
-  _renderer: {fileID: 7267725706689802293}
+  _ledDisplayRenderer: {fileID: 97326991227533874}
+  <NeutralDisplayMaterial>k__BackingField: {fileID: 2100000, guid: 4ecc76f5f9b9660498236c2bc6fd1813, type: 2}
+  <PrimaryMaterial>k__BackingField: {fileID: 0}
   flashColor: {r: 1, g: 0.6784314, b: 0.6784314, a: 1}
 --- !u!1 &659702818765861832
 GameObject:
@@ -181,7 +183,6 @@ GameObject:
   - component: {fileID: 3124052299814050784}
   - component: {fileID: 8275998832229527094}
   - component: {fileID: 97326991227533874}
-  - component: {fileID: 2584672219136287971}
   m_Layer: 0
   m_Name: LEDFace
   m_TagString: Untagged
@@ -199,8 +200,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.512}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9064156301632137938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -237,7 +238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f96821bbefeea864b9b418af4b8615ac, type: 2}
+  - {fileID: 2100000, guid: 4ecc76f5f9b9660498236c2bc6fd1813, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,25 +261,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2584672219136287971
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659702818765861832}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

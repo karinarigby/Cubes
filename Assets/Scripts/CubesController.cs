@@ -20,7 +20,7 @@ namespace Tokidos
         /// <summary>
         /// Holds last saved colors of all cubes
         /// </summary>
-        public Dictionary<int, Color> CubesColorsSnapshot { get; private set; } = new();
+        public Dictionary<int, Material> CubesMaterials { get; private set; } = new();
         private void Awake()
         {
             _subCubesController = GetComponent<SubCubesController>();
@@ -33,22 +33,6 @@ namespace Tokidos
             mainCubeController.leftClicked.AddListener(OnMainCubeLeftClicked);
         }
 
-        public void DisableMouseClicks()
-        {
-            
-        }
-
-        public void SetColorsSnapshot()
-        {
-            CubesColorsSnapshot.Clear();
-            CubesColorsSnapshot.Add(mainCubeController.Id, mainCubeController.flashColor);
-
-            foreach (var subCube in _subCubesController.SubCubes)
-            {
-                CubesColorsSnapshot.Add(subCube.Id, subCube.flashColor);
-            }
-        }
-
         public void SetLastTransforms()
         {
             CubesTransformsSnapshot.Clear();
@@ -57,15 +41,6 @@ namespace Tokidos
             foreach (var subCube in _subCubesController.SubCubes)
             {
                 CubesTransformsSnapshot.Add(subCube.Id, subCube.transform);
-            }
-        }
-
-        public void ApplyColorSnapshot()
-        {
-            mainCubeController.flashColor = CubesColorsSnapshot[mainCubeController.Id];
-            foreach (var subCube in _subCubesController.SubCubes)
-            {
-                subCube.flashColor = CubesColorsSnapshot[subCube.Id];
             }
         }
 
@@ -83,14 +58,27 @@ namespace Tokidos
             }
         }
 
-        public void SetCubesBaseColor(Color color)
+        /// <summary>
+        /// Reset cubes to their original colors
+        /// </summary>
+        public void ResetCubeMaterials()
         {
-            mainCubeController.SetBaseColor(color);
+            mainCubeController.ResetDisplayMaterial();
             foreach (var subCube in _subCubesController.SubCubes)
             {
-                subCube.SetBaseColor(color);
+                subCube.ResetDisplayMaterial();
             }
         }
+        public void SetCubesDisplayMaterial(Material material)
+        {
+            mainCubeController.SetLedDisplayMaterial(material);
+            foreach (var subCube in _subCubesController.SubCubes)
+            {
+                subCube.SetLedDisplayMaterial(material);
+            }
+        }
+        
+        
         
         public void FlashAllCubes(Color flashColor)
         {
