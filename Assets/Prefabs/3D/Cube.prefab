@@ -169,6 +169,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _ledDisplayRenderer: {fileID: 97326991227533874}
+  <Collider>k__BackingField: {fileID: 4628487394833417850}
   <NeutralDisplayMaterial>k__BackingField: {fileID: 2100000, guid: 4ecc76f5f9b9660498236c2bc6fd1813, type: 2}
   <PrimaryMaterial>k__BackingField: {fileID: 0}
   flashColor: {r: 1, g: 0.6784314, b: 0.6784314, a: 1}

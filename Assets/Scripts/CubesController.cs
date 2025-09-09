@@ -10,14 +10,10 @@ namespace Tokidos
     public class CubesController : MonoBehaviour
     {
         public bool mouseEnabled;
-        public CubeController mainCubeController;
+        [FormerlySerializedAs("mainCubeController")] public CubeController mainCube;
         public SubCubesController _subCubesController;
-
-        /// <summary>
-        /// Holds the positions of all the cubes
-        /// </summary>
-        public Dictionary<int, Vector3> CubesLastPositions { get; private set; } = new();
-        public Dictionary<int, Quaternion> CubesLastRotations { get; private set; } = new();
+        
+        [field: SerializeField] private CubeTransforms _cubeTransformData;
         
         /// <summary>
         /// Holds last saved colors of all cubes
@@ -31,41 +27,36 @@ namespace Tokidos
         private void Start()
         {
             _subCubesController.subCubeLeftClickedEvent.AddListener(OnSubCubeLeftClicked);
-            mainCubeController.rightClicked.AddListener(OnMainCubeRightClicked);
-            mainCubeController.leftClicked.AddListener(OnMainCubeLeftClicked);
+            mainCube.rightClicked.AddListener(OnMainCubeRightClicked);
+            mainCube.leftClicked.AddListener(OnMainCubeLeftClicked);
         }
 
         public void SetLastTransforms()
         {
-            CubesLastPositions.Clear();
-            CubesLastRotations.Clear();
+            _cubeTransformData.Clear();
+            _cubeTransformData.AddLastPositionAndRotation(mainCube.Id, mainCube.transform.position, mainCube.transform.rotation);
             
-            CubesLastPositions.Add(mainCubeController.Id, mainCubeController.transform.position);
-            CubesLastRotations.Add(mainCubeController.Id, mainCubeController.transform.rotation);
-
             foreach (var subCube in _subCubesController.SubCubes)
             {
-                CubesLastPositions.Add(subCube.Id, subCube.transform.position);
-                CubesLastRotations.Add(subCube.Id, subCube.transform.rotation);
+                _cubeTransformData.AddLastPositionAndRotation(subCube.Id, subCube.transform.position, subCube.transform.rotation);
             }
         }
 
         public void ResetTransforms()
         {
-            if (CubesLastPositions.Count == 0 || CubesLastRotations.Count == 0)
+            if (_cubeTransformData.NotSet())
             {
-                Debug.Log("Nothing to reset to");
+                Debug.Log("No cube transform data was set, no positions to revert back to");
                 return;
             }
-            
-            var mainCubePosition = CubesLastPositions[mainCubeController.Id];
-            var mainCubeRotation = CubesLastRotations[mainCubeController.Id];
-            mainCubeController.transform.SetPositionAndRotation(mainCubePosition, mainCubeRotation);
+            var mainCubePosition = _cubeTransformData.LastPositions[mainCube.Id];
+            var mainCubeRotation = _cubeTransformData.LastRotations[mainCube.Id];
+            mainCube.transform.SetPositionAndRotation(mainCubePosition, mainCubeRotation);
 
             foreach (var subCube in _subCubesController.SubCubes)
             {
-                var  subCubePosition = CubesLastPositions[subCube.Id];
-                var  subCubeRotation = CubesLastRotations[subCube.Id];
+                var  subCubePosition = _cubeTransformData.LastPositions[subCube.Id];
+                var  subCubeRotation = _cubeTransformData.LastRotations[subCube.Id];
                 subCube.transform.SetPositionAndRotation(subCubePosition, subCubeRotation);
             }
         }
@@ -75,7 +66,7 @@ namespace Tokidos
         /// </summary>
         public void ResetCubeMaterials()
         {
-            mainCubeController.ResetDisplayMaterial();
+            mainCube.ResetDisplayMaterial();
             foreach (var subCube in _subCubesController.SubCubes)
             {
                 subCube.ResetDisplayMaterial();
@@ -83,7 +74,7 @@ namespace Tokidos
         }
         public void SetCubesDisplayMaterial(Material material)
         {
-            mainCubeController.SetLedDisplayMaterial(material);
+            mainCube.SetLedDisplayMaterial(material);
             foreach (var subCube in _subCubesController.SubCubes)
             {
                 subCube.SetLedDisplayMaterial(material);
@@ -92,20 +83,20 @@ namespace Tokidos
         
         public void FlashAllCubes(Color flashColor)
         {
-            mainCubeController.Flash(flashColor);
+            mainCube.Flash(flashColor);
             _subCubesController.FlashAllSubCubes(flashColor);
         }
 
         private void FlashSubCubes()
         {
-            _subCubesController.FlashAllSubCubes(mainCubeController.flashColor);
+            _subCubesController.FlashAllSubCubes(mainCube.flashColor);
         }
 
         private void OnMainCubeLeftClicked(CubeController cubeController)
         {
             if (mouseEnabled)
             {
-                mainCubeController.Flash(mainCubeController.flashColor);
+                mainCube.Flash(mainCube.flashColor);
             }
         }
 
@@ -115,7 +106,7 @@ namespace Tokidos
             {
                 return;
             }
-            mainCubeController.Shake();
+            mainCube.Shake();
             FlashSubCubes();
         }
 
@@ -123,15 +114,15 @@ namespace Tokidos
         {
             if (mouseEnabled)
             {
-                mainCubeController.Flash(cubeController.flashColor);
+                mainCube.Flash(cubeController.flashColor);
             }
         }
 
         private void OnDestroy()
         {
             _subCubesController.subCubeLeftClickedEvent.RemoveListener(OnSubCubeLeftClicked);
-            mainCubeController.rightClicked.RemoveListener(OnMainCubeRightClicked);
-            mainCubeController.leftClicked.RemoveListener(OnMainCubeLeftClicked);
+            mainCube.rightClicked.RemoveListener(OnMainCubeRightClicked);
+            mainCube.leftClicked.RemoveListener(OnMainCubeLeftClicked);
         }
 
         public void SnapAllToXAxis()
@@ -139,7 +130,7 @@ namespace Tokidos
             
             
             //get on same axis
-            mainCubeController.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            mainCube.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
             foreach (var subCube in _subCubesController.SubCubes)
             {
                 subCube.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
@@ -150,7 +141,7 @@ namespace Tokidos
             Physics.SyncTransforms();
             
             //calculate bounds
-            var totalBounds = mainCubeController.Bounds.size;
+            var totalBounds = mainCube.Bounds.size;
             foreach (var subCube in _subCubesController.SubCubes)
             {
                 totalBounds += subCube.Bounds.size;
@@ -159,10 +150,10 @@ namespace Tokidos
             var extents = totalBounds / 2;
             var startPointPosition = Vector3.zero - extents.x*Vector3.right;
             
-            mainCubeController.transform.position = startPointPosition + (mainCubeController.Bounds.extents.x*Vector3.right);
+            mainCube.transform.position = startPointPosition + (mainCube.Bounds.extents.x*Vector3.right);
             
-            var lastPointPosition = mainCubeController.transform.position;
-            var lastExtents = (mainCubeController.Bounds.extents.x*Vector3.right);
+            var lastPointPosition = mainCube.transform.position;
+            var lastExtents = (mainCube.Bounds.extents.x*Vector3.right);
             
             foreach (var subCube in _subCubesController.SubCubes)
             {

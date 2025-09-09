@@ -51,8 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tokidos.CubesController
   mouseEnabled: 1
-  mainCubeController: {fileID: 4645757856274943830}
+  mainCube: {fileID: 4645757856274943830}
   _subCubesController: {fileID: 5858270438626322557}
+  _cubeTransformData: {fileID: 11400000, guid: d5795b011b6e65042b9612801e7613fb, type: 2}
 --- !u!114 &5858270438626322557
 MonoBehaviour:
   m_ObjectHideFlags: 0
