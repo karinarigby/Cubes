@@ -28,7 +28,11 @@ public class SnapEditorTool : EditorTool
         if (target is CubesController cubesController)
         {
             cubesController.SetCubesDisplayMaterial(cubesController.mainCubeController.PrimaryMaterial);
+            
+            //snap to alignment
             cubesController.SetLastTransforms();
+            
+            cubesController.SnapAllToXAxis();
             cubesController.mouseEnabled = false;
         }
     }
@@ -48,7 +52,7 @@ public class UnsnapEditorTool : EditorTool
         if (target is CubesController cubesController)
         {
             cubesController.ResetCubeMaterials();
-            cubesController.ApplyTransformSnapshot();
+            cubesController.ResetTransforms();
             cubesController.mouseEnabled = true;
         }
     }

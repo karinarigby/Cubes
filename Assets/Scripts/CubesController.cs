@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -15,7 +16,8 @@ namespace Tokidos
         /// <summary>
         /// Holds the positions of all the cubes
         /// </summary>
-        public Dictionary<int, Transform> CubesTransformsSnapshot { get; private set; } = new();
+        public Dictionary<int, Vector3> CubesLastPositions { get; private set; } = new();
+        public Dictionary<int, Quaternion> CubesLastRotations { get; private set; } = new();
         
         /// <summary>
         /// Holds last saved colors of all cubes
@@ -35,26 +37,36 @@ namespace Tokidos
 
         public void SetLastTransforms()
         {
-            CubesTransformsSnapshot.Clear();
-            CubesTransformsSnapshot.Add(mainCubeController.Id, mainCubeController.transform);
+            CubesLastPositions.Clear();
+            CubesLastRotations.Clear();
+            
+            CubesLastPositions.Add(mainCubeController.Id, mainCubeController.transform.position);
+            CubesLastRotations.Add(mainCubeController.Id, mainCubeController.transform.rotation);
 
             foreach (var subCube in _subCubesController.SubCubes)
             {
-                CubesTransformsSnapshot.Add(subCube.Id, subCube.transform);
+                CubesLastPositions.Add(subCube.Id, subCube.transform.position);
+                CubesLastRotations.Add(subCube.Id, subCube.transform.rotation);
             }
         }
 
-        public void ApplyTransformSnapshot()
+        public void ResetTransforms()
         {
-            var mainTransform = CubesTransformsSnapshot[mainCubeController.Id];
-            mainCubeController.transform.SetPositionAndRotation(mainTransform.position, mainTransform.rotation);
-            mainCubeController.transform.localScale = mainTransform.localScale;
+            if (CubesLastPositions.Count == 0 || CubesLastRotations.Count == 0)
+            {
+                Debug.Log("Nothing to reset to");
+                return;
+            }
+            
+            var mainCubePosition = CubesLastPositions[mainCubeController.Id];
+            var mainCubeRotation = CubesLastRotations[mainCubeController.Id];
+            mainCubeController.transform.SetPositionAndRotation(mainCubePosition, mainCubeRotation);
 
             foreach (var subCube in _subCubesController.SubCubes)
             {
-                var  subCubeTransform = CubesTransformsSnapshot[subCube.Id];
-                subCubeTransform.SetPositionAndRotation(subCubeTransform.position, subCubeTransform.rotation);
-                subCubeTransform.localScale = subCubeTransform.localScale;
+                var  subCubePosition = CubesLastPositions[subCube.Id];
+                var  subCubeRotation = CubesLastRotations[subCube.Id];
+                subCube.transform.SetPositionAndRotation(subCubePosition, subCubeRotation);
             }
         }
 
@@ -77,8 +89,6 @@ namespace Tokidos
                 subCube.SetLedDisplayMaterial(material);
             }
         }
-        
-        
         
         public void FlashAllCubes(Color flashColor)
         {
@@ -122,6 +132,44 @@ namespace Tokidos
             _subCubesController.subCubeLeftClickedEvent.RemoveListener(OnSubCubeLeftClicked);
             mainCubeController.rightClicked.RemoveListener(OnMainCubeRightClicked);
             mainCubeController.leftClicked.RemoveListener(OnMainCubeLeftClicked);
+        }
+
+        public void SnapAllToXAxis()
+        {
+            
+            
+            //get on same axis
+            mainCubeController.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            foreach (var subCube in _subCubesController.SubCubes)
+            {
+                subCube.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                // EditorUtility.SetDirty(subCube.Collider);
+
+            }
+       
+            Physics.SyncTransforms();
+            
+            //calculate bounds
+            var totalBounds = mainCubeController.Bounds.size;
+            foreach (var subCube in _subCubesController.SubCubes)
+            {
+                totalBounds += subCube.Bounds.size;
+            }
+
+            var extents = totalBounds / 2;
+            var startPointPosition = Vector3.zero - extents.x*Vector3.right;
+            
+            mainCubeController.transform.position = startPointPosition + (mainCubeController.Bounds.extents.x*Vector3.right);
+            
+            var lastPointPosition = mainCubeController.transform.position;
+            var lastExtents = (mainCubeController.Bounds.extents.x*Vector3.right);
+            
+            foreach (var subCube in _subCubesController.SubCubes)
+            {
+                subCube.transform.position = lastPointPosition + lastExtents + (subCube.Bounds.extents.x*Vector3.right);
+                lastPointPosition = subCube.transform.position;
+                lastExtents = subCube.Bounds.extents.x*Vector3.right;
+            }
         }
     }
 }

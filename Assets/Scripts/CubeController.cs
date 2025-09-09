@@ -6,6 +6,7 @@ using UnityEngine.Serialization;
 
 [RequireComponent(typeof(FlashAnimationController))]
 [RequireComponent(typeof(ShakeAnimationController))]
+[RequireComponent(typeof(BoxCollider))]
 public class CubeController : MonoBehaviour, IPointerClickHandler
 {
     [field: SerializeField] public int Id { get; private set; }
@@ -16,6 +17,9 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
     [SerializeField] MeshRenderer _ledDisplayRenderer;
     private FlashAnimationController _flashAnimationController;
     private ShakeAnimationController _shakeAnimationController;
+    [field:SerializeField] public BoxCollider Collider { get; private set; }
+    
+    public Bounds Bounds => Collider.bounds;
 
     [field:SerializeField] public Material NeutralDisplayMaterial { get; private set; }
     [field:SerializeField] public Material PrimaryMaterial { get; private set; }
@@ -27,10 +31,11 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
+        Collider = GetComponent<BoxCollider>();
         _shakeAnimationController = GetComponent<ShakeAnimationController>();
         _flashAnimationController = GetComponent<FlashAnimationController>();
     }
-
+    
     public void Flash(Color colorToFlash)
     {
         //start flash animation
