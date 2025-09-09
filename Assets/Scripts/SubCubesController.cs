@@ -4,35 +4,34 @@ using UnityEngine.Events;
 
 public class SubCubesController : MonoBehaviour
 {
-    [SerializeField] private List<SubCube> subCubes;
+    [field: SerializeField] public List<CubeController> SubCubes { get; private set; }
 
-    public UnityEvent<SubCube> subCubeLeftClickedEvent;
+    public UnityEvent<CubeController> subCubeLeftClickedEvent;
         
     private void Start()
     {
-        foreach (var subCube in subCubes)
+        foreach (var subCube in SubCubes)
         {
             subCube.leftClicked.AddListener(OnSubCubeLeftClicked);
         }
     }
 
-    public void FlashAll(Color colorToFlash)
+    public void FlashAllSubCubes(Color colorToFlash)
     {
-        Debug.Log("Flashing all sub cubes");
-        foreach (var subCube in subCubes)
+        foreach (var subCube in SubCubes)
         {
             subCube.Flash(colorToFlash);
         }
     }
 
-    private void OnSubCubeLeftClicked(SubCube subCube)
+    private void OnSubCubeLeftClicked(CubeController cubeController)
     {
-        subCubeLeftClickedEvent?.Invoke(subCube);
+        subCubeLeftClickedEvent?.Invoke(cubeController);
     }
 
     private void OnDestroy()
     {
-        foreach (var subCube in subCubes)
+        foreach (var subCube in SubCubes)
         {
             subCube.leftClicked.RemoveListener(OnSubCubeLeftClicked);
         }

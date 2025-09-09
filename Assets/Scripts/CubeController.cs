@@ -2,16 +2,19 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using UnityEngine.U2D;
 
-public class SubCube : MonoBehaviour, IPointerClickHandler
+[RequireComponent(typeof(FlashAnimationController))]
+[RequireComponent(typeof(ShakeAnimationController))]
+public class CubeController : MonoBehaviour, IPointerClickHandler
 {
+    [field: SerializeField] public int Id { get; private set; }
     public Styles stylesSource;
-    public UnityEvent<SubCube> leftClicked;
+    public UnityEvent<CubeController> leftClicked;
+    public UnityEvent<CubeController> rightClicked;
     
-    private MeshRenderer _renderer;
+    [SerializeField] MeshRenderer _renderer;
     private FlashAnimationController _flashAnimationController;
+    private ShakeAnimationController _shakeAnimationController;
     
     [field: SerializeField] public Color flashColor;
     private Color _lastColorFlashed;
@@ -19,13 +22,13 @@ public class SubCube : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         _renderer = GetComponent<MeshRenderer>();
-        _renderer.material.color = stylesSource.baseGrey;
+        _shakeAnimationController = GetComponent<ShakeAnimationController>();
         _flashAnimationController = GetComponent<FlashAnimationController>();
     }
 
-    private void Start()
+    public void SetBaseColor(Color color)
     {
-        _flashAnimationController.SetFlashSequence(flashColor);
+        _renderer.material.color = color;
     }
 
     public void Flash(Color colorToFlash)
@@ -45,9 +48,19 @@ public class SubCube : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        switch (eventData.button)
         {
-            leftClicked.Invoke(this);
+            case PointerEventData.InputButton.Left:
+                leftClicked.Invoke(this);
+                break;
+            case PointerEventData.InputButton.Right:
+                rightClicked.Invoke(this);
+                break;
         }
+    }
+    
+    public void Shake()
+    {
+        _shakeAnimationController.StartShake();
     }
 }
