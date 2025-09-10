@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d15b2203af246b6488da204c1d45dc1e, type: 3}
   m_Name: CubeTransformsData
   m_EditorClassIdentifier: Assembly-CSharp::Tokidos.CubeTransforms
+  <MouseEnabled>k__BackingField: 1
+  <LastPositions>k__BackingField: []
+  <LastRotations>k__BackingField: []

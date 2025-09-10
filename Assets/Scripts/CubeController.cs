@@ -1,15 +1,17 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
+[Serializable]
 [RequireComponent(typeof(FlashAnimationController))]
 [RequireComponent(typeof(ShakeAnimationController))]
 [RequireComponent(typeof(BoxCollider))]
 public class CubeController : MonoBehaviour, IPointerClickHandler
 {
-    [field: SerializeField] public int Id { get; private set; }
+    [field: SerializeField] public int Index { get; private set; }
     public Styles stylesSource;
     public UnityEvent<CubeController> leftClicked;
     public UnityEvent<CubeController> rightClicked;
@@ -35,7 +37,15 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
         _shakeAnimationController = GetComponent<ShakeAnimationController>();
         _flashAnimationController = GetComponent<FlashAnimationController>();
     }
-    
+
+    /// <summary>
+    /// Returns the Extents of the Bound object limited to X axis
+    /// </summary>
+    /// <returns>Vector of form (extents.x, 0, 0)</returns>
+    public Vector3 GetBoundsExtentsOnXAxis()
+    {
+        return Bounds.extents.x * Vector3.right;
+    }
     public void Flash(Color colorToFlash)
     {
         //start flash animation

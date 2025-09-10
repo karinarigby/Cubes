@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5858270438626322557}
   m_Layer: 0
   m_Name: Cubes
-  m_TagString: Untagged
+  m_TagString: Cubes
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,10 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f9b8c070a862745a70ddee6356d4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tokidos.CubesController
-  mouseEnabled: 1
+  <mouseEnabled>k__BackingField: 1
   mainCube: {fileID: 4645757856274943830}
   _subCubesController: {fileID: 5858270438626322557}
-  _cubeTransformData: {fileID: 11400000, guid: d5795b011b6e65042b9612801e7613fb, type: 2}
+  persistentCubesDataSO: {fileID: 11400000, guid: d5795b011b6e65042b9612801e7613fb, type: 2}
 --- !u!114 &5858270438626322557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +224,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <Index>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: <BaseMaterial>k__BackingField
       value: 
       objectReference: {fileID: 2100000, guid: fffc6132c8b2bad4d91344877aa8aaee, type: 2}
@@ -326,6 +330,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: <Id>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <Index>k__BackingField
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
@@ -434,6 +442,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <Index>k__BackingField
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: <BaseMaterial>k__BackingField
       value: 
       objectReference: {fileID: 2100000, guid: a8ce144bd4a47b6479d64b14a64ee06d, type: 2}
@@ -532,6 +544,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
       propertyPath: <Id>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}
+      propertyPath: <Index>k__BackingField
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7830241033531824101, guid: f6e8ab8a4e30f764b9f93cc9d73887d0, type: 3}

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[Serializable]
 public class SubCubesController : MonoBehaviour
 {
     [field: SerializeField] public List<CubeController> SubCubes { get; private set; }
