@@ -47,3 +47,7 @@ In the meantime I attached a Quad game object to be the front 'face' of the cube
 - In a production setting I'd be adding docs to the repo with system flow diagrams and adding automated tests
 - I'd be structuring my git commits with feature branches and executing proper pull requests with detailed What Why How type-information after each feature is complete.
 - I'd also go through my git commit history to ensure that each commit can be checked out without breaking the project
+
+## Demo
+https://github.com/user-attachments/assets/f1baa1dc-f0a5-41bc-a8a0-b0e784a89fb4
+
