@@ -1,13 +1,10 @@
 using UnityEngine;
 
-namespace Tokidos
-{
-    public class GridController : MonoBehaviour
+    public class GridDisplayController : MonoBehaviour
     {
         private MeshRenderer _meshRenderer;
 
         private Texture2D _7By7Texture = new (7, 7);
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Awake()
         {
             _meshRenderer = GetComponent<MeshRenderer>();
@@ -15,8 +12,19 @@ namespace Tokidos
         
         void Start()
         {
-            _7By7Texture.filterMode = FilterMode.Point;
+            _7By7Texture.filterMode = FilterMode.Point; 
+            _meshRenderer.material.mainTexture = _7By7Texture;
+        }
+
+        public void LoadColorArray()
+        {
             
+        }
+        
+        public void SetDisplay(Color[] colors)
+        {
+            _7By7Texture.SetPixels(colors);
+            _7By7Texture.Apply();
             _meshRenderer.material.mainTexture = _7By7Texture;
         }
 
@@ -26,4 +34,4 @@ namespace Tokidos
             _7By7Texture.Apply();
         }
     }
-}
+ 

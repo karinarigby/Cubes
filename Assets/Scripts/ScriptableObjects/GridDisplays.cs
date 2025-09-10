@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Tokidos.ScriptableObjects
+namespace ScriptableObjects
 {
     [CreateAssetMenu(fileName = "GridDisplaysScriptableObject", menuName = "Scriptable Objects/GridDisplaysScriptableObject")]
     public class GridDisplays : ScriptableObject

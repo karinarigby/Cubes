@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-namespace Tokidos
+/// <summary>
+/// potential tool to help with setting display
+/// </summary>
+[Serializable]
+public class DisplayGrid
 {
-    [Serializable]
-    public class DisplayGrid
-    {
-        public Color[,] displayGrid = new Color[7,7];
-    }
+    public Color[,] displayGrid = new Color[7,7];
 }

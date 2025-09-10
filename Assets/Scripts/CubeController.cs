@@ -11,24 +11,23 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(BoxCollider))]
 public class CubeController : MonoBehaviour, IPointerClickHandler
 {
-    [field: SerializeField] public int Index { get; private set; }
-    public Styles stylesSource;
-    public UnityEvent<CubeController> leftClicked;
-    public UnityEvent<CubeController> rightClicked;
-    
-    [SerializeField] MeshRenderer _ledDisplayRenderer;
-    private FlashAnimationController _flashAnimationController;
-    private ShakeAnimationController _shakeAnimationController;
-    [field:SerializeField] public BoxCollider Collider { get; private set; }
-    
     public Bounds Bounds => Collider.bounds;
+    [field:SerializeField] public BoxCollider Collider { get; private set; }
+    [field: SerializeField] public int Index { get; private set; }
 
     [field:SerializeField] public Material NeutralDisplayMaterial { get; private set; }
     [field:SerializeField] public Material PrimaryMaterial { get; private set; }
-    
-    
-    
+
     public Color flashColor;
+    
+    [SerializeField] private MeshRenderer _ledDisplayRenderer;
+
+    private FlashAnimationController _flashAnimationController;
+    private ShakeAnimationController _shakeAnimationController;
+
+    public UnityEvent<CubeController> leftClicked;
+    public UnityEvent<CubeController> rightClicked;
+
     private Color _lastColorFlashed;
 
     private void Awake()
@@ -46,6 +45,11 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
     {
         return Bounds.extents.x * Vector3.right;
     }
+    
+    /// <summary>
+    /// Start flash animation on cube face of particular color
+    /// </summary>
+    /// <param name="colorToFlash">the color to flash</param>
     public void Flash(Color colorToFlash)
     {
         //start flash animation
@@ -57,10 +61,14 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
         {
             _flashAnimationController.SetFlashSequence(colorToFlash, _ledDisplayRenderer.material );
         }
-        _flashAnimationController.DoFlashAnimation(colorToFlash);
+        _flashAnimationController.DoFlashAnimation();
         _lastColorFlashed = colorToFlash;
     }
 
+    /// <summary>
+    /// callback for when mouse click over cube
+    /// </summary>
+    /// <param name="eventData"></param>
     public void OnPointerClick(PointerEventData eventData)
     {
         switch (eventData.button)
@@ -74,18 +82,28 @@ public class CubeController : MonoBehaviour, IPointerClickHandler
         }
     }
     
+    /// <summary>
+    /// Start Shake animation
+    /// </summary>
     public void Shake()
     {
         _shakeAnimationController.StartShake();
     }
 
-    public void SetLedDisplayMaterial(Material material)
-    {
-        _ledDisplayRenderer.material = material;
-    }
-
+    /// <summary>
+    /// Set cube face material back to default
+    /// </summary>
     public void ResetDisplayMaterial()
     {
         _ledDisplayRenderer.material = NeutralDisplayMaterial;
+    }
+
+    /// <summary>
+    /// Set cube face material
+    /// </summary>
+    /// <param name="material"></param>
+    public void SetLedDisplayMaterial(Material material)
+    {
+        _ledDisplayRenderer.material = material;
     }
 }

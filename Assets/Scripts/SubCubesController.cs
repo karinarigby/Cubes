@@ -18,6 +18,10 @@ public class SubCubesController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Flash all sub cube faces with a color
+    /// </summary>
+    /// <param name="colorToFlash">The color the sub cube faces should flash to</param>
     public void FlashAllSubCubes(Color colorToFlash)
     {
         foreach (var subCube in SubCubes)
