@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tokidos.CubesController
   <MouseEnabled>k__BackingField: 1
   mainCube: {fileID: 4645757856274943830}
-  subCubesController: {fileID: 0}
+  subCubesController: {fileID: 5858270438626322557}
   persistentCubesDataSO: {fileID: 11400000, guid: d5795b011b6e65042b9612801e7613fb, type: 2}
 --- !u!114 &5858270438626322557
 MonoBehaviour:
